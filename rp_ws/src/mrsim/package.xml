@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>mrsim</name>
+    <version>1.1.0</version>
+    <description>Multi Robot Simulator</description>
+    <maintainer email="ciarpaglini.1813738@studenti.uniroma1.it">Lorenzo Ciarpaglini</maintainer>
+    <buildtool_depend>catkin</buildtool_depend>
+    <license>GNU</license>
+    
+    <depend>roscpp</depend>
+    <depend>sensor_msgs</depend>
+    <depend>nav_msgs</depend>
+    <depend>geometry_msgs</depend>
+    <depend>tf2</depend>
+    <depend>tf2_ros</depend>
+    <depend>tf2_eigen</depend>
+
+    <build_depend>message_generation</build_depend>
+    <build_depend>libpcl-all-dev</build_depend>
+    <exec_depend>message_runtime</exec_depend>
+    <exec_depend>libpcl-all</exec_depend>
+
+</package>

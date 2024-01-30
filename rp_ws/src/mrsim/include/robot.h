@@ -1,0 +1,95 @@
+#pragma once
+
+#include "types.h"
+#include "world.h"
+
+#include "ros/ros.h"
+#include "mrsim/rodom.h"
+#include "geometry_msgs/Twist.h"
+#include "geometry_msgs/TransformStamped.h"
+#include "nav_msgs/Odometry.h"
+
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2/LinearMath/Transform.h>
+#include <tf2_ros/transform_broadcaster.h>
+#include <tf2_eigen/tf2_eigen.h>
+#include <tf2/convert.h> 
+
+struct Robot : public WorldItem {
+
+      Robot(std::string namespace_, float radius_, 
+              float max_rv_,
+              float max_tv_,
+              std::shared_ptr<World> w_,
+            const Pose& pose_ = Pose::Identity());
+
+      Robot(std::string namespace_, 
+            float radius_, 
+            float max_rv_,
+            float max_tv_, std::shared_ptr<WorldItem> parent_,
+            const Pose& pose_ = Pose::Identity());
+
+      void draw() override;
+      void timeTick(float dt) override;
+      //   // Callback function to update robot velocity
+      void cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg);
+
+      float radius;
+      float tv = 0, rv = 0;
+      float max_rv, max_tv;
+
+      string cmd_vel_topic;
+      string odom_topic;
+
+      // ROS
+      ros::NodeHandle nh;  // ROS Node Handle
+      ros::Publisher odom_pub;  // Publisher to send odometry data
+      ros::Subscriber cmd_vel_sub;  // Subscriber to receive velocity commands
+};
+
+// // Definitiopn of robot struct that extend world item
+// struct Robot : public WorldItem {
+  
+//   // Robot constructor that takes as input a word to which the robot belong
+//   Robot(std::shared_ptr<World> w_,
+//         string frame_id_, 
+//         string namespace_, 
+//         float radius_, 
+//         float max_rv_,
+//         float max_tv_,
+//         const Pose& pose_ = Pose::Identity(), 
+//         int id_p = -1);
+  
+//   // Robot contructor that takes as input a world item to which the robot belong
+//   Robot(std::shared_ptr<WorldItem> parent_, 
+//         string frame_id_, 
+//         string namespace_,
+//         float radius_, 
+//         float max_rv_,
+//         float max_tv_,
+//         const Pose& pose_ = Pose::Identity(), 
+//         int id_p = -1);
+
+//   // Method to draw the robot on the map with open cv
+//   void draw() override;
+
+//   // Method to update the robot pose in function of the velocity
+//   void timeTick(float dt) override;
+
+//   // Callback function to update robot velocity
+//   void cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg);
+
+//   // Custom tf module from robot to world(parent)
+//   void tf2Robot();
+
+//   string frame_id;
+//   float radius;
+//   float tv = 0, rv = 0, max_rv, max_tv;
+//   int id_p = -1;
+//   string parent_frame_id;
+
+//   // ROS
+//   ros::NodeHandle nh;  // ROS Node Handle
+//   ros::Publisher odom_pub;  // Publisher to send odometry data
+//   ros::Subscriber cmd_vel_sub;  // Subscriber to receive velocity commands
+// };    

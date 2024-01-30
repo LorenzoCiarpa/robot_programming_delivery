@@ -1,0 +1,2 @@
+mrsim
+-DCATKIN_DEVEL_PREFIX=/home/lorenzo/Scrivania/robot_programming_git/robot-programming/rp_ws/devel -DCMAKE_INSTALL_PREFIX=/home/lorenzo/Scrivania/robot_programming_git/robot-programming/rp_ws/install -G Unix Makefiles

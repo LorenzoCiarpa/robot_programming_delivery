@@ -1,0 +1,8 @@
+prefix=/home/lorenzo/Scrivania/robot-programming/exam/rp_ws/devel
+
+Name: mrsim
+Description: Description of mrsim
+Version: 1.1.0
+Cflags: -I/home/lorenzo/Scrivania/robot-programming/exam/rp_ws/devel/include -I/home/lorenzo/Scrivania/robot-programming/exam/rp_ws/src/mrsim/include/
+Libs: -L${prefix}/lib 
+Requires: message_runtime roscpp tf2 tf2_ros tf2_eigen
